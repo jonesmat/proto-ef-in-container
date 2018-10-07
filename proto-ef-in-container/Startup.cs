@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using proto_ef_in_container.Managers;
 
 namespace proto_ef_in_container
 {
@@ -26,6 +27,10 @@ namespace proto_ef_in_container
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton<MemCacheMgr>();
+
+            services.AddScoped<BooksManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
